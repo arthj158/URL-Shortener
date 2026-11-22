@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: linkly
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: linkly-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CACHE_TYPE
+        value: caffeine
+
+databases:
+  - name: linkly-db
+    databaseName: linkly
+    user: linkly
+    plan: free

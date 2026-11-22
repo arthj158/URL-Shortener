@@ -1,0 +1,4 @@
+dev\tinyurl\linkly\service\Base62Test.class
+dev\tinyurl\linkly\service\LinkServiceTest.class
+dev\tinyurl\linkly\config\DataSourceConfigTest.class
+dev\tinyurl\linkly\ApiIntegrationTest.class
