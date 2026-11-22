@@ -5,6 +5,7 @@ import java.util.*;
 import org.springframework.http.*;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 import org.springframework.web.bind.annotation.*;
 
 @RestControllerAdvice
@@ -36,6 +37,12 @@ public class GlobalExceptionHandler {
   ResponseEntity<ErrorResponse> badRequest(Exception e) {
     return response(
         HttpStatus.BAD_REQUEST, "BAD_REQUEST", "Request body or parameter is invalid", Map.of());
+  }
+
+  @ExceptionHandler(NoResourceFoundException.class)
+  ResponseEntity<ErrorResponse> notFound(NoResourceFoundException e) {
+    return response(
+        HttpStatus.NOT_FOUND, "NOT_FOUND", "The requested resource was not found", Map.of());
   }
 
   @ExceptionHandler(Exception.class)
